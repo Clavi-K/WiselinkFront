@@ -22,6 +22,7 @@ const Navbar = ({ userInfo }) => {
             {userInfo !== undefined ?
                 <div className={`${s.loggedUser}`}>
                     <p className={`${s.userName}`}>{userInfo.user.firstName} {userInfo.user.lastName}</p>
+                    {userInfo.user.role === "ADMIN" ? <p className={`${s.userName}`}>(Admin)</p> : null}
                     <button className={`${s.logout}`} onClick={logoutHandler}>Log out</button>
                 </div> : null}
         </div>

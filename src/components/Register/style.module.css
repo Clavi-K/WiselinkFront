@@ -47,3 +47,14 @@
     background-color: var(--primary-color);
     color: white;
 }
+
+.navlink {
+    text-decoration: underline;
+    color: var(--primary-color);
+}
+
+.navlink:hover {
+    transition: .25s;
+    font-weight: 400;
+    font-size: large;
+}

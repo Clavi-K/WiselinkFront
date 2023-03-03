@@ -1,0 +1,39 @@
+.title {
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.eventCard {
+    color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 5rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 20px;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.eventCard:hover {
+    color: white;
+    background-color: var(--primary-color);
+}
+
+
+
+.topCard {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 1rem;
+}
+
+.bottomCard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 1.5rem;
+}
+
+.eventDate {
+    margin-right: 7rem;
+}
