@@ -1,0 +1,34 @@
+.navbar {
+    background: var(--primary-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logout {
+    margin-right: 1.5rem;
+    color: white;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: large;
+}
+
+.logout:hover {
+    text-decoration: underline;
+}
+
+.loggedUser {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 15rem;
+}
+
+.userName {
+    color: white;
+    font-size: large;
+    font-weight: 500;
+}
