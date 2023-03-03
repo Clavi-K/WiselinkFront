@@ -18,11 +18,11 @@ const Navbar = ({ userInfo }) => {
 
     return (
         <div className={`${s.navbar}`}>
-            <img src={logo} alt="Wiselink logo" />
+            <img onClick={() => navigate("/events")}className={`${s.wiselinkLogo}`} src={logo} alt="Wiselink logo" />
             {userInfo !== undefined ?
                 <div className={`${s.loggedUser}`}>
-                    <p className={`${s.userName}`}>{userInfo.user.firstName} {userInfo.user.lastName}</p>
-                    {userInfo.user.role === "ADMIN" ? <p className={`${s.userName}`}>(Admin)</p> : null}
+                    <p className={`${s.userName}`}>{userInfo.user.firstName} {userInfo.user.lastName} {userInfo.user.role === "ADMIN" ? "(Admin)" : null}</p>
+                    <button className={`${s.logout}`} hidden={userInfo.user.role !== "ADMIN" || document.URL.includes("/events/create")} onClick={() => navigate("/events/create")}>Create event</button>
                     <button className={`${s.logout}`} onClick={logoutHandler}>Log out</button>
                 </div> : null}
         </div>
