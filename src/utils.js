@@ -21,6 +21,20 @@ export function loginValidation(values) {
     
 }
 
+export function eventValidation(values) {
+    let errors = {}
+
+    if(!values.title || !stringFieldValidation(values.title)) errors.title = "Please insert a valid title!"
+    if(!values.shortDescription || !stringFieldValidation(values.shortDescription)) errors.shortDescription = "Please insert a valid short description!"
+    if(!values.longDescription || !stringFieldValidation(values.longDescription)) errors.longDescription = "Please insert a valid long description!"
+    if(!values.address || !stringFieldValidation(values.address)) errors.address = "Please insert a valid address!"
+    if(!values.date || !stringFieldValidation(values.date)) errors.date = "Please insert a valid date!"
+    if(!values.time || !stringFieldValidation(values.time)) errors.time = "Please insert a valid time!"
+
+    return errors
+
+}
+
 function stringFieldValidation(input) {
     return typeof input === "string" && input.trim() !== ""
 }

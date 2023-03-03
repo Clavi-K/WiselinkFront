@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import Events from './components/Events/Events';
+import CreateEvent from './components/CreateEvent/CreateEvent';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
       <Route path='/' element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/events" element={<Events />} />
+      <Route path="/events/create" element={<CreateEvent />} />
     </Routes>
 
   </>);

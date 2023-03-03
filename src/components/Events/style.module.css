@@ -19,8 +19,6 @@
     background-color: var(--primary-color);
 }
 
-
-
 .topCard {
     display: flex;
     justify-content: space-between;
@@ -36,4 +34,13 @@
 
 .eventDate {
     margin-right: 7rem;
+}
+
+.eventTitle {
+    font-size: large;
+    font-weight: 600;
+}
+
+.draftFlag {
+    font-weight: 700;
 }

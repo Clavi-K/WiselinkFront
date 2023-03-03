@@ -24,11 +24,15 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 20rem;
+    width: 35rem;
 }
 
 .userName {
     color: white;
     font-size: large;
     font-weight: 500;
+}
+
+.wiselinkLogo {
+    cursor: pointer;
 }

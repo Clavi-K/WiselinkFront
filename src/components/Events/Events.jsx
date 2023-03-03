@@ -15,7 +15,7 @@ const Events = () => {
 
     useEffect(() => {
         if (!userInfo) navigate("/")
-        dispatch(getEvents(userInfo.accessToken))
+        if (userInfo) dispatch(getEvents(userInfo.accessToken))
     }, [])
 
     return (
@@ -29,13 +29,13 @@ const Events = () => {
                         <div className={`${s.eventCard}`} key={e.id}>
 
                             <div className={`${s.topCard}`}>
-                                <p className={`${ s.eventTitle }`}>{e.title}</p>
-                                <p className={`${ s.eventDate }`}>{dateParser(e.dateTime)}</p>
+                                <p className={`${s.eventTitle}`}>{e.title}</p>
+                                <p className={`${s.eventDate}`}>{dateParser(e.dateTime)}</p>
                             </div>
 
-                            <div className={`${ s.bottomCard }`}>
-                                <p className={`${ s.eventSDescription }`}>{e.shortDescription}</p>
-                                <p>{e.status === "DRAFT" ? `(${ e.status })` : null}</p>
+                            <div className={`${s.bottomCard}`}>
+                                <p className={`${s.eventSDescription}`}>{e.shortDescription}</p>
+                                <p className={`${s.draftFlag}`}>{e.status === "DRAFT" ? `(${e.status})` : null}</p>
                             </div>
 
                         </div>
@@ -51,5 +51,7 @@ export default Events
 
 function dateParser(dateTime) {
     const date = new Date(dateTime)
-    return `${ date.getDate() } / ${ date.getMonth() } / ${ date.getFullYear() }`
+    const hours = date.getHours() === 0 ? "00" : date.getHours()
+    const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
+    return `${date.getDate()} / ${date.getMonth() + 1} / ${date.getFullYear()} - ${hours}:${minutes}`
 }

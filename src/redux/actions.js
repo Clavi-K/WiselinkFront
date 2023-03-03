@@ -5,8 +5,9 @@ export const REGISTER = "REGISTER"
 export const LOG_OUT = "LOG_OUT"
 export const GET_EVENTS = "GET_EVENTS"
 
-export function registerUser(payload) {
 
+export function registerUser(payload) {
+    
     return async (dispatch) => {
 
         try {
@@ -60,11 +61,25 @@ export function getEvents(accessToken) {
     return async dispatch => {
 
         try {
-            const response = await axios.get("http://localhost:8082/events", { headers: { 
-            "Access-Control-Allow-Headers":"authorization",
-            "Access-Control-Allow-Methods": "OPTIONS",     
-            "authorization": accessToken } })
+            const response = await axios.get("http://localhost:8082/events", { headers: { "authorization": accessToken } })
             return dispatch({ type: GET_EVENTS, payload: response.data })
+
+        } catch (e) {
+            alert(e.message)
+        }
+
+    }
+
+}
+
+export function createEvent(payload, accessToken) {
+
+    return async (dispatch) => {
+
+        try {
+
+            const response = await axios.post("http://localhost:8082/events", payload, { headers: { "authorization": accessToken } })
+            window.location.replace("http://localhost:3000/events");
 
         } catch (e) {
             alert(e.message)
