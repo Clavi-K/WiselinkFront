@@ -1,6 +1,6 @@
 /* ----- INITIAL STATE ----- */
 
-import { LOG_IN, LOG_OUT, REGISTER } from "./actions"
+import { GET_EVENTS, LOG_OUT, REGISTER } from "./actions"
 
 const initialState = {
     events: [],
@@ -20,6 +20,9 @@ export default function reducer(state = initialState, action) {
 
         case LOG_OUT:
             return { events: [], userInfo: undefined }
+
+        case GET_EVENTS:
+            return { ...state, events: action.payload }
 
         default:
             return state

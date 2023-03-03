@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar/Navbar"
 import { useSelector } from 'react-redux';
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
+import Events from './components/Events/Events';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
     <Routes>
       <Route path='/' element={<Register />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/events" element={<Events />} />
     </Routes>
 
   </>);

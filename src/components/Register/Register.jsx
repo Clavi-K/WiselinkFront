@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, NavLink } from 'react-router-dom'
 
 import { registerValidation } from '../../utils'
 import { registerUser } from '../../redux/actions'
@@ -63,7 +63,7 @@ const Register = () => {
                     </div>
 
                     <button type="submit" hidden={isSubmitting} className={`${s.submitButton}`}>Register!</button>
-
+                    <p>Already have an account? <NavLink className={`${s.navlink}`} to="/login">Log in!</NavLink></p>
                 </Form>
             )}
 
