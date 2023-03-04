@@ -1,30 +1,25 @@
+import logo from './logo.svg';
 import './App.css';
 
-import { Routes, Route } from "react-router-dom"
-import Navbar from "./components/Navbar/Navbar"
-import { useSelector } from 'react-redux';
-import Register from './components/Register/Register';
-import Login from './components/Login/Login';
-import Events from './components/Events/Events';
-import CreateEvent from './components/CreateEvent/CreateEvent';
-import EventDetail from './components/EventDetail/EventDetail';
-
 function App() {
-
-  const userInfo = useSelector(state => state.userInfo)
-
-  return (<>
-    <Navbar userInfo={userInfo} />
-
-    <Routes>
-      <Route path='/' element={<Register />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/events" element={<Events />} />
-      <Route path="/events/create" element={<CreateEvent />} />
-      <Route path="/events/details" element={<EventDetail />} />
-    </Routes>
-
-  </>);
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
 }
 
 export default App;
