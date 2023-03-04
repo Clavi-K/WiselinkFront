@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import s from "./style.module.css"
 import { deleteEvent, getEvents, setDetails } from '../../redux/actions'
 import { dateParser } from '../../utils'
+import EditEvent from '../EditEvent/EditEvent'
 
 const Events = () => {
 
@@ -96,7 +97,11 @@ const Events = () => {
                             <div className={`${s.topCard}`}>
                                 <p className={`${s.eventTitle}`}>{e.title}</p>
                                 <p className={`${s.eventDate}`}>{dateParser(e.dateTime)}</p>
-                                <button onClick={() => dispatch(deleteEvent(e._id, userInfo.accessToken))} className={`${s.deleteButton}`} hidden={userInfo.user.role !== "ADMIN" || e.deleted}>X</button>
+
+                                <div hidden={userInfo.user.role !== "ADMIN"}>
+                                    <button onClick={() => dispatch(deleteEvent(e._id, userInfo.accessToken))} className={`${s.deleteButton}`} hidden={e.deleted}>X</button>
+                                </div>
+
                             </div>
 
                             <div className={`${s.bottomCard}`}>

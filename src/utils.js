@@ -24,8 +24,6 @@ export function loginValidation(values) {
 export function eventValidation(values) {
     let errors = {}
 
-    console.log(values.status)
-
     if (!values.title || !stringFieldValidation(values.title)) errors.title = "Please insert a valid title!"
     if (!values.shortDescription || !stringFieldValidation(values.shortDescription)) errors.shortDescription = "Please insert a valid short description!"
     if (!values.longDescription || !stringFieldValidation(values.longDescription)) errors.longDescription = "Please insert a valid long description!"
@@ -43,7 +41,7 @@ export function dateParser(dateTime) {
     const month = date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1
     const hours = date.getHours() === 0 ? "00" : date.getHours()
     const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
-    return `${date.getDate()} / ${month} / ${date.getFullYear()} - ${hours}:${minutes}`
+    return `${date.getDate()}/${month}/${date.getFullYear()} - ${hours}:${minutes}`
 }
 
 function stringFieldValidation(input) {

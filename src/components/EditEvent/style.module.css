@@ -1,0 +1,103 @@
+.background {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formContainer {
+    width: 500px;
+    min-height: 100px;
+    background-color: rgb(255, 255, 255);
+    position: relative;
+    border-radius: 5px;
+    box-shadow: rgba(100, 100, 100, 111, .2) 0px 7px 29px 0px;
+    padding: 20px;
+}
+
+.formTitleWrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.formTitle {
+    font-weight: 500;
+    font-size: 24px;
+    color: var(--primary-color);
+    margin: 2px;
+}
+
+.closeButton {
+    background: none;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    position: absolute;
+    top: 25px;
+    right: 20px;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: .2s ease all;
+    font-weight: 700;
+}
+
+.closeButton:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.formInput {
+    display: flex;
+    flex-direction: column;
+    margin: .3rem;
+}
+
+.input {
+    border: 1px solid var(--primary-color);
+    border-radius: 10px;
+}
+
+.errorMsg {
+    margin: 0;
+    color: red;
+    font-size: small;
+}
+
+.textareaInput {
+    resize: vertical;
+}
+
+.submitButton {
+    background: none;
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    margin: 0 8rem;
+    padding: .4rem 0;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.submitButton:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.checkInput {
+    margin-top: -.8rem;
+    margin-bottom: .3rem;
+}
