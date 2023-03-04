@@ -35,17 +35,6 @@ const Events = () => {
     filteredEvents = filterByTitle(titleFilter, filteredEvents)
     filteredEvents = filterByStatus(userInfo.user.role, statusFilter, filteredEvents)
 
-    const statusHandler = () => {
-
-        setStatusFilter(curr => {
-
-            if (curr === "Published") return "Draft"
-            return "Published"
-
-        })
-
-    }
-
     return (
         <div>
             <div className={`${s.filters}`}>
@@ -96,7 +85,11 @@ const Events = () => {
                             <div className={`${s.topCard}`}>
                                 <p className={`${s.eventTitle}`}>{e.title}</p>
                                 <p className={`${s.eventDate}`}>{dateParser(e.dateTime)}</p>
-                                <button onClick={() => dispatch(deleteEvent(e._id, userInfo.accessToken))} className={`${s.deleteButton}`} hidden={userInfo.user.role !== "ADMIN" || e.deleted}>X</button>
+
+                                <div hidden={userInfo.user.role !== "ADMIN"}>
+                                    <button onClick={() => dispatch(deleteEvent(e._id, userInfo.accessToken))} className={`${s.deleteButton}`} hidden={e.deleted}>X</button>
+                                </div>
+
                             </div>
 
                             <div className={`${s.bottomCard}`}>

@@ -33,7 +33,6 @@ const CreateEvent = () => {
     const submitHandler = async (values) => {
         values.dateTime = `${values.date} ${values.time}`
         await dispatch(createEvent(values, userInfo.accessToken))
-
     }
 
     return (

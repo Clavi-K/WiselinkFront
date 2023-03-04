@@ -155,3 +155,20 @@ export function deleteEvent(payload, accessToken) {
     }
 
 }
+
+export function editEvent(payload, accessToken) {
+
+    return async (dispatch) => {
+
+        try {
+
+            await axios.put(`${apiURL}/events/`, payload, { headers: { "authorization": accessToken } })
+            window.location.replace(`${frontURL}/events`)
+
+        } catch (e) {
+            alert(e.response.data.error)
+        }
+
+    }
+
+}
