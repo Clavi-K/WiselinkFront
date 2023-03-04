@@ -15,7 +15,6 @@ const EventDetail = () => {
     const userInfo = useSelector(state => state.userInfo)
     const currentEvent = useSelector(state => state.currentEvent)
 
-    console.log(userInfo.user)
     useEffect(() => {
         if (!userInfo) navigate("/")
     }, [])
