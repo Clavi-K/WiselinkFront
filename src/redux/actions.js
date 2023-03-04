@@ -2,7 +2,7 @@ import axios from "axios"
 import jwtDecode from "jwt-decode"
 
 const apiURL = "http://localhost:8082"
-const frontURL= "http://localhost:3000"
+const frontURL = "http://localhost:3000"
 
 export const REGISTER = "REGISTER"
 export const LOG_OUT = "LOG_OUT"
@@ -128,13 +128,30 @@ export function selectEvent(payload, accessToken) {
 
         try {
 
-            await axios.put(`${apiURL}/users/addEvent`, {eventId:payload}, {headers:{"authorization": accessToken}})
-            return dispatch({type: ADD_EVENT, payload})
+            await axios.put(`${apiURL}/users/addEvent`, { eventId: payload }, { headers: { "authorization": accessToken } })
+            return dispatch({ type: ADD_EVENT, payload })
 
-        } catch(e) {
+        } catch (e) {
             alert(e.message)
         }
 
-    } 
+    }
+
+}
+
+export function deleteEvent(payload, accessToken) {
+
+    return async (dispatch) => {
+
+        try {
+
+            await axios.delete(`${apiURL}/events/`, { headers: { "authorization": accessToken }, data: { eventId: payload } })
+            window.location.replace(`${frontURL}/events`)
+
+        } catch (e) {
+            alert(e.response.data.error)
+        }
+
+    }
 
 }
