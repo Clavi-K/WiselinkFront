@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import s from "./style.module.css"
-import { wipeDetails } from '../../redux/actions'
 import { dateParser } from '../../utils'
+import { selectEvent } from '../../redux/actions'
 
 const EventDetail = () => {
 
@@ -15,12 +15,17 @@ const EventDetail = () => {
     const userInfo = useSelector(state => state.userInfo)
     const currentEvent = useSelector(state => state.currentEvent)
 
+    console.log(userInfo.user)
     useEffect(() => {
         if (!userInfo) navigate("/")
     }, [])
 
     const backButtonHandler = () => {
         navigate("/events")
+    }
+
+    const assistHandler = () => {
+        dispatch(selectEvent(currentEvent._id, userInfo.accessToken))
     }
 
     return (
@@ -47,10 +52,10 @@ const EventDetail = () => {
                 <p>Where? {currentEvent.address}</p>
             </div>
 
-            <p>Brough to you by: {currentEvent.organizer}</p>
+            <p>Brought to you by: {currentEvent.organizer}</p>
 
             <div className={`${s.buttonContainer}`}>
-                <button hidden={new Date(currentEvent.dateTime) < Date.now() || currentEvent.status === "DRAFT"} className={`${s.button} ${s.hover}`}>Im going!</button>
+                <button onClick={assistHandler} hidden={isButtonVisible(userInfo.user, currentEvent)} className={`${s.button} ${s.hover}`}>Im going!</button>
             </div>
 
         </div>
@@ -58,3 +63,7 @@ const EventDetail = () => {
 }
 
 export default EventDetail
+
+function isButtonVisible(user, currentEvent) {
+    return new Date(currentEvent.dateTime) < Date.now() || currentEvent.status !== "PUBLISHED" || user.events.includes(currentEvent._id)
+}

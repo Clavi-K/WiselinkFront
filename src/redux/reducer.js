@@ -1,6 +1,6 @@
 /* ----- INITIAL STATE ----- */
 
-import { GET_EVENTS, LOG_OUT, REGISTER, SET_DETAILS, WIPE_DETAILS } from "./actions"
+import { ADD_EVENT, GET_EVENTS, LOG_OUT, REGISTER, SET_DETAILS, WIPE_DETAILS } from "./actions"
 
 const initialState = {
     events: [],
@@ -30,6 +30,9 @@ export default function reducer(state = initialState, action) {
 
         case WIPE_DETAILS:
             return { ...state, currentEvent: undefined }
+
+        case ADD_EVENT:
+            return { ...state, userInfo: { ...state.userInfo, user: { ...state.userInfo.user, events: [...state.userInfo.user.events, action.payload] } } }
 
         default:
             return state

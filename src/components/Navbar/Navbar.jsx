@@ -11,6 +11,7 @@ const Navbar = ({ userInfo }) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
+
     const logoutHandler = (e) => {
         dispatch(logOut())
         navigate("/login")
@@ -18,7 +19,7 @@ const Navbar = ({ userInfo }) => {
 
     return (
         <div className={`${s.navbar}`}>
-            <img onClick={() => navigate("/events")}className={`${s.wiselinkLogo}`} src={logo} alt="Wiselink logo" />
+            <img onClick={() => navigate("/events")} className={`${s.wiselinkLogo}`} src={logo} alt="Wiselink logo" />
             {userInfo !== undefined ?
                 <div className={`${s.loggedUser}`}>
                     <p className={`${s.userName}`}>{userInfo.user.firstName} {userInfo.user.lastName} {userInfo.user.role === "ADMIN" ? "(Admin)" : null}</p>

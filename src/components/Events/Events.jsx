@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
@@ -14,23 +14,29 @@ const Events = () => {
     const events = useSelector(state => state.events)
     const userInfo = useSelector(state => state.userInfo)
 
+    let filteredEvents = [...events]
+
+    const [myEvents, setMyEvents] = useState(false)
+
     useEffect(() => {
         if (!userInfo) navigate("/")
         if (userInfo) dispatch(getEvents(userInfo.accessToken))
     }, [])
 
+    if(myEvents) filteredEvents = filterMyEvents(userInfo.user.events, filteredEvents)
+
     return (
         <div>
-            <h1 className={`${s.title}`}>Available events</h1>
+            <h1 onClick={()=> setMyEvents(!myEvents)} className={`${s.title}`}>{!myEvents ? `Available events ` : `My events`}</h1>
 
             <div className={`${s.eventsContainer}`}>
-                {events ?
-                    events.map(e => (
+                {filteredEvents ?
+                    filteredEvents.map(e => (
 
                         <div onClick={() => {
                             dispatch(setDetails(e))
                             navigate("/events/details")
-                        }} className={`${s.eventCard} ${e.deleted ? s.deleted : null}`} key={e.id}>
+                        }} className={`${s.eventCard} ${e.deleted ? s.deleted : null}`} key={e._id}>
 
                             <div className={`${s.topCard}`}>
                                 <p className={`${s.eventTitle}`}>{e.title}</p>
@@ -54,3 +60,7 @@ const Events = () => {
 
 export default Events
 
+
+function filterMyEvents(userEvents, events) {
+    return events.filter(e => userEvents.includes(e._id))
+}

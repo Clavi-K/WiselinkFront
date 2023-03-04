@@ -1,12 +1,15 @@
 import axios from "axios"
 import jwtDecode from "jwt-decode"
 
+const apiURL = "http://localhost:8082"
+const frontURL= "http://localhost:3000"
+
 export const REGISTER = "REGISTER"
 export const LOG_OUT = "LOG_OUT"
 export const GET_EVENTS = "GET_EVENTS"
 export const SET_DETAILS = "SET_DETAILS"
 export const WIPE_DETAILS = "WIPE_DETAILS"
-
+export const ADD_EVENT = "ADD_EVENT"
 
 export function registerUser(payload) {
 
@@ -14,7 +17,7 @@ export function registerUser(payload) {
 
         try {
 
-            const response = await axios.post("http://localhost:8082/users/register", payload)
+            const response = await axios.post(`${apiURL}/users/register`, payload)
             const user = jwtDecode(response.data)
             return dispatch({ type: REGISTER, payload: { user, accessToken: response.data } })
 
@@ -32,7 +35,7 @@ export function loginUser(payload) {
 
         try {
 
-            const response = await axios.post("http://localhost:8082/users/login", payload)
+            const response = await axios.post(`${apiURL}/users/login`, payload)
             const user = jwtDecode(response.data)
             return dispatch({ type: REGISTER, payload: { user, accessToken: response.data } })
 
@@ -63,7 +66,7 @@ export function getEvents(accessToken) {
     return async dispatch => {
 
         try {
-            const response = await axios.get("http://localhost:8082/events", { headers: { "authorization": accessToken } })
+            const response = await axios.get(`${apiURL}/events`, { headers: { "authorization": accessToken } })
             return dispatch({ type: GET_EVENTS, payload: response.data })
 
         } catch (e) {
@@ -80,8 +83,8 @@ export function createEvent(payload, accessToken) {
 
         try {
 
-            await axios.post("http://localhost:8082/events", payload, { headers: { "authorization": accessToken } })
-            window.location.replace("http://localhost:3000/events");
+            await axios.post(`${apiURL}/events`, payload, { headers: { "authorization": accessToken } })
+            window.location.replace(`${frontURL}/events`);
 
         } catch (e) {
             alert(e.message)
@@ -116,5 +119,22 @@ export function wipeDetails() {
         }
 
     }
+
+}
+
+export function selectEvent(payload, accessToken) {
+
+    return async (dispatch) => {
+
+        try {
+
+            await axios.put(`${apiURL}/users/addEvent`, {eventId:payload}, {headers:{"authorization": accessToken}})
+            return dispatch({type: ADD_EVENT, payload})
+
+        } catch(e) {
+            alert(e.message)
+        }
+
+    } 
 
 }
