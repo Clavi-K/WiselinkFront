@@ -24,21 +24,15 @@ const CreateEvent = () => {
         shortDescription: "",
         longDescription: "",
         address: "",
+        organizer: "",
         date: "",
-        time: ""
+        time: "",
+        status:"PUBLISHED"
     }
 
     const submitHandler = async (values) => {
-        const event = {
-            title: values.title,
-            shortDescription: values.shortDescription,
-            longDescription: values.longDescription,
-            address: values.address,
-            dateTime: `${values.date} ${values.time}`,
-            status:"DRAFT"
-        }
-
-        await dispatch(createEvent(event, userInfo.accessToken))
+        values.dateTime = `${values.date} ${values.time}`
+        await dispatch(createEvent(values, userInfo.accessToken))
 
     }
 
@@ -75,6 +69,12 @@ const CreateEvent = () => {
                     </div>
 
                     <div className={`${s.formInput}`}>
+                        <label htmlFor='organizer'>Organizer:</label>
+                        <Field type="text" name="organizer" className={`${s.input}`} component="input" />
+                        <ErrorMessage name="organizer" component={"p"} className={`${s.errorMsg}`} />
+                    </div>
+
+                    <div className={`${s.formInput}`}>
                         <label htmlFor='date'>Date:</label>
                         <Field type="date" name="date" className={`${s.input}`} component="input" />
                         <ErrorMessage name="date" component={"p"} className={`${s.errorMsg}`} />
@@ -84,6 +84,14 @@ const CreateEvent = () => {
                         <label htmlFor='time'>Time:</label>
                         <Field type="time" name="time" className={`${s.input}`} component="input" />
                         <ErrorMessage name="time" component={"p"} className={`${s.errorMsg}`} />
+                    </div>
+
+                    <div className={`${s.formInput}`}>
+                        <label htmlFor='status'>Status:</label>
+                        <Field as="select" name="status" className={`${s.input}`}>
+                            <option value="PUBLISHED">Published</option>
+                            <option value="DRAFT">Draft</option>
+                        </Field>
                     </div>
 
                     <button type="submit" hidden={isSubmitting} className={`${s.submitButton}`}>Create event!</button>

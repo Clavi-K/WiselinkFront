@@ -18,21 +18,32 @@ export function loginValidation(values) {
     if (!values.password || !passwordValidation(values.password)) errors.password = "Password must contain one number, one special character and at least six characters and a max of ten!"
 
     return errors
-    
+
 }
 
 export function eventValidation(values) {
     let errors = {}
 
-    if(!values.title || !stringFieldValidation(values.title)) errors.title = "Please insert a valid title!"
-    if(!values.shortDescription || !stringFieldValidation(values.shortDescription)) errors.shortDescription = "Please insert a valid short description!"
-    if(!values.longDescription || !stringFieldValidation(values.longDescription)) errors.longDescription = "Please insert a valid long description!"
-    if(!values.address || !stringFieldValidation(values.address)) errors.address = "Please insert a valid address!"
-    if(!values.date || !stringFieldValidation(values.date)) errors.date = "Please insert a valid date!"
-    if(!values.time || !stringFieldValidation(values.time)) errors.time = "Please insert a valid time!"
+    console.log(values.status)
+
+    if (!values.title || !stringFieldValidation(values.title)) errors.title = "Please insert a valid title!"
+    if (!values.shortDescription || !stringFieldValidation(values.shortDescription)) errors.shortDescription = "Please insert a valid short description!"
+    if (!values.longDescription || !stringFieldValidation(values.longDescription)) errors.longDescription = "Please insert a valid long description!"
+    if (!values.address || !stringFieldValidation(values.address)) errors.address = "Please insert a valid address!"
+    if (!values.organizer || !stringFieldValidation(values.organizer)) errors.organizer = "Please insert a valid organizer!"
+    if (!values.date || !stringFieldValidation(values.date)) errors.date = "Please insert a valid date!"
+    if (!values.time || !stringFieldValidation(values.time)) errors.time = "Please insert a valid time!"
 
     return errors
 
+}
+
+export function dateParser(dateTime) {
+    const date = new Date(dateTime)
+    const month = date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1
+    const hours = date.getHours() === 0 ? "00" : date.getHours()
+    const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
+    return `${date.getDate()} / ${month} / ${date.getFullYear()} - ${hours}:${minutes}`
 }
 
 function stringFieldValidation(input) {

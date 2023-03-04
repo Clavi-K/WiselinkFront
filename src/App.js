@@ -7,6 +7,7 @@ import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import Events from './components/Events/Events';
 import CreateEvent from './components/CreateEvent/CreateEvent';
+import EventDetail from './components/EventDetail/EventDetail';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/events" element={<Events />} />
       <Route path="/events/create" element={<CreateEvent />} />
+      <Route path="/events/details" element={<EventDetail />} />
     </Routes>
 
   </>);
