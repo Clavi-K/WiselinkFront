@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import s from "./style.module.css"
-import { getEvents } from '../../redux/actions'
+import { getEvents, setDetails } from '../../redux/actions'
+import { dateParser } from '../../utils'
 
 const Events = () => {
 
@@ -22,15 +23,19 @@ const Events = () => {
         <div>
             <h1 className={`${s.title}`}>Available events</h1>
 
-            <div onClick={() => console.log("A")} className={`${s.eventsContainer}`}>
+            <div className={`${s.eventsContainer}`}>
                 {events ?
                     events.map(e => (
 
-                        <div className={`${s.eventCard}`} key={e.id}>
+                        <div onClick={() => {
+                            dispatch(setDetails(e))
+                            navigate("/events/details")
+                        }} className={`${s.eventCard} ${e.deleted ? s.deleted : null}`} key={e.id}>
 
                             <div className={`${s.topCard}`}>
                                 <p className={`${s.eventTitle}`}>{e.title}</p>
                                 <p className={`${s.eventDate}`}>{dateParser(e.dateTime)}</p>
+                                <button className={`${s.deleteButton}`} hidden={userInfo.user.role !== "ADMIN" || e.deleted}>X</button>
                             </div>
 
                             <div className={`${s.bottomCard}`}>
@@ -49,9 +54,3 @@ const Events = () => {
 
 export default Events
 
-function dateParser(dateTime) {
-    const date = new Date(dateTime)
-    const hours = date.getHours() === 0 ? "00" : date.getHours()
-    const minutes = date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()
-    return `${date.getDate()} / ${date.getMonth() + 1} / ${date.getFullYear()} - ${hours}:${minutes}`
-}

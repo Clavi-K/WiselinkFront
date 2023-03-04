@@ -4,10 +4,12 @@ import jwtDecode from "jwt-decode"
 export const REGISTER = "REGISTER"
 export const LOG_OUT = "LOG_OUT"
 export const GET_EVENTS = "GET_EVENTS"
+export const SET_DETAILS = "SET_DETAILS"
+export const WIPE_DETAILS = "WIPE_DETAILS"
 
 
 export function registerUser(payload) {
-    
+
     return async (dispatch) => {
 
         try {
@@ -78,9 +80,37 @@ export function createEvent(payload, accessToken) {
 
         try {
 
-            const response = await axios.post("http://localhost:8082/events", payload, { headers: { "authorization": accessToken } })
+            await axios.post("http://localhost:8082/events", payload, { headers: { "authorization": accessToken } })
             window.location.replace("http://localhost:3000/events");
 
+        } catch (e) {
+            alert(e.message)
+        }
+
+    }
+
+}
+
+export function setDetails(payload) {
+
+    return (dispatch) => {
+
+        try {
+            return dispatch({ type: SET_DETAILS, payload })
+        } catch (e) {
+            alert(e.message)
+        }
+
+    }
+
+}
+
+export function wipeDetails() {
+
+    return (dispatch) => {
+
+        try {
+            return dispatch({ type: WIPE_DETAILS })
         } catch (e) {
             alert(e.message)
         }
