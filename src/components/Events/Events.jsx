@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom'
 import s from "./style.module.css"
 import { deleteEvent, getEvents, setDetails } from '../../redux/actions'
 import { dateParser } from '../../utils'
-import EditEvent from '../EditEvent/EditEvent'
 
 const Events = () => {
 
@@ -35,17 +34,6 @@ const Events = () => {
     filteredEvents = filterByToDate(toDateFilter, filteredEvents)
     filteredEvents = filterByTitle(titleFilter, filteredEvents)
     filteredEvents = filterByStatus(userInfo.user.role, statusFilter, filteredEvents)
-
-    const statusHandler = () => {
-
-        setStatusFilter(curr => {
-
-            if (curr === "Published") return "Draft"
-            return "Published"
-
-        })
-
-    }
 
     return (
         <div>
