@@ -85,3 +85,46 @@
     color: white;
     background-color: var(--primary-color);
 }
+
+.filters {
+    display: flex;
+    flex-direction: column;
+    font-size: large;
+}
+
+.filtersContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.filtersTitle {
+    color: var(--primary-color);
+    text-align: center;
+    font-size: larger;
+    font-weight: 500;
+}
+
+.filter {
+    color: var(--primary-color);
+}
+
+.filter label {
+    margin-right: .5rem;
+}
+
+.filter input {
+    border: 2px solid var(--primary-color);
+    border-radius: 12px;
+    font-size: medium;
+}
+
+.filterStatus {
+    cursor: pointer;
+    transition: .25s;
+}
+
+.filterStatus:hover{
+    font-size: larger;
+}
